@@ -1,0 +1,1 @@
+enum LogType { text, table }
