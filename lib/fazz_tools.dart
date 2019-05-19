@@ -5,8 +5,8 @@ import 'package:meta/meta.dart';
 import 'package:web_socket_channel/io.dart';
 
 abstract class FazzToolsInterface {
-  FazzLog get log;
-  FazzNetworkInspector get networkInspector;
+  FazzLogInterface get log;
+  FazzNetworkInspectorInterface get networkInspector;
 }
 
 class FazzTools implements FazzToolsInterface {
@@ -30,6 +30,6 @@ class FazzTools implements FazzToolsInterface {
     }
   }
 
-  FazzLog get log => _log;
-  FazzNetworkInspector get networkInspector => _networkInspector;
+  FazzLogInterface get log => _log;
+  FazzNetworkInspectorInterface get networkInspector => _networkInspector;
 }
