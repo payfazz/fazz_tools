@@ -1,4 +1,5 @@
 import 'package:fazz_tools/tools/log/log.dart';
+import 'package:fazz_tools/tools/network_inspector/dio_inspector.dart';
 import 'package:fazz_tools/tools/network_inspector/network_inspector.dart';
 import 'package:meta/meta.dart';
 import 'package:web_socket_channel/io.dart';
@@ -14,6 +15,7 @@ class FazzTools implements FazzToolsInterface {
   String hostname;
   IOWebSocketChannel _ws;
   FazzLogInterface _log;
+  FazzDioInspector _dio;
   FazzNetworkInspectorInterface _networkInspector;
 
   FazzTools(
@@ -21,7 +23,8 @@ class FazzTools implements FazzToolsInterface {
     if (isDebug) {
       _ws = IOWebSocketChannel.connect('ws//${hostname}:${port}');
       _log = FazzLog(ws: _ws);
-      _networkInspector = FazzNetworkInspector(ws: _ws);
+      _dio = FazzDioInspector(ws: _ws);
+      _networkInspector = FazzNetworkInspector(dio: _dio);
 
       return;
     }

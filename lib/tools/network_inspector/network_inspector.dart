@@ -1,10 +1,14 @@
+import 'package:fazz_tools/tools/network_inspector/dio_inspector.dart';
 import 'package:meta/meta.dart';
-import 'package:web_socket_channel/io.dart';
 
-abstract class FazzNetworkInspectorInterface {}
+abstract class FazzNetworkInspectorInterface {
+  FazzDioInspector get dioInspect;
+}
 
 class FazzNetworkInspector implements FazzNetworkInspectorInterface {
-  IOWebSocketChannel ws;
+  FazzDioInspector dio;
 
-  FazzNetworkInspector({@required this.ws});
+  FazzNetworkInspector({@required this.dio});
+
+  FazzDioInspector get dioInspect => dio;
 }
