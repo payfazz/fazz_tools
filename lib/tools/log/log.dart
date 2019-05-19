@@ -2,7 +2,7 @@ import 'package:fazz_tools/model/print_group.dart';
 import 'package:fazz_tools/model/print_options.dart';
 import 'package:fazz_tools/model/send_log.dart';
 import 'package:fazz_tools/model/timer_log.dart';
-import 'package:fazz_tools/value/log_type.dart';
+import 'package:fazz_tools/value/log_display.dart';
 import 'package:meta/meta.dart';
 import 'package:web_socket_channel/io.dart';
 
@@ -45,7 +45,7 @@ class FazzLog implements FazzLogInterface {
   void printTable(dynamic text, {PrintOptions options}) {
     ws.sink.add(SendLog(
       text: text,
-      type: LogType.table,
+      showAs: LogDisplay.table,
       options: options,
     ));
   }

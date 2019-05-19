@@ -1,1 +1,1 @@
-enum LogType { text, table }
+enum LogType { text, network }

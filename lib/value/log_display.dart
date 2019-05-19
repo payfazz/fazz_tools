@@ -1,0 +1,1 @@
+enum LogDisplay { plainText, table }
