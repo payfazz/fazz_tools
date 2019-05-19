@@ -18,10 +18,13 @@ class FazzTools implements FazzToolsInterface {
   FazzDioInspector _dio;
   FazzNetworkInspectorInterface _networkInspector;
 
-  FazzTools(
-      {@required this.isDebug, @required this.hostname, @required this.port}) {
+  FazzTools({
+    @required this.isDebug,
+    @required this.hostname,
+    @required this.port,
+  }) {
     if (isDebug) {
-      _ws = IOWebSocketChannel.connect('ws//${hostname}:${port}');
+      _ws = IOWebSocketChannel.connect('ws//$hostname:$port');
       _log = FazzLog(ws: _ws);
       _dio = FazzDioInspector(ws: _ws);
       _networkInspector = FazzNetworkInspector(dio: _dio);
