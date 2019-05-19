@@ -101,7 +101,7 @@ class FazzLog implements FazzLogInterface {
             startTime: _oldTime,
             endTime: _currTime,
             range: _range,
-          ).stringify(),
+          ).toJson(),
         ).stringify(),
       );
     }

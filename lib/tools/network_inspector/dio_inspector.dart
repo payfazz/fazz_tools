@@ -42,7 +42,7 @@ class FazzDioInspector extends InterceptorsWrapper {
               jsonDecode(jsonEncode(response.headers)) as Map<String, dynamic>,
           statusCode: response.statusCode,
           isError: isError,
-        ).stringify(),
+        ).toJson(),
         type: LogType.network,
       ).stringify(),
     );
