@@ -25,7 +25,7 @@ class SendLog implements Stringify {
         "text": text,
         "type": type,
         "showAs": showAs,
-        "options": options.stringify(),
+        "options": options.toJson(),
       };
 
   @override
