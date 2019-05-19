@@ -26,33 +26,42 @@ class FazzLog implements FazzLogInterface {
 
   @override
   void print(dynamic text, {PrintOptions options}) {
-    SendLog _log = SendLog(
-      text: text,
-      options: options,
-    );
-
     if (_textQueu.length > 0) {
       int _lastIndex = _textQueu.length - 1;
-      _textQueu[_lastIndex].addText(_log);
+      _textQueu[_lastIndex].addText(
+        SendLog(
+          text: text,
+          options: options,
+        ),
+      );
 
       return;
     }
 
-    ws.sink.add(_log);
+    ws.sink.add(SendLog(
+      text: text,
+      options: options,
+    ).stringify());
   }
 
   @override
   void printTable(dynamic text, {PrintOptions options}) {
-    ws.sink.add(SendLog(
-      text: text,
-      showAs: LogDisplay.table,
-      options: options,
-    ));
+    ws.sink.add(
+      SendLog(
+        text: text,
+        showAs: LogDisplay.table,
+        options: options,
+      ).stringify(),
+    );
   }
 
   @override
   void printGroup(String labelName) {
-    _textQueu.add(PrintGroup(labelName: labelName));
+    _textQueu.add(
+      PrintGroup(
+        labelName: labelName,
+      ),
+    );
   }
 
   @override
@@ -61,9 +70,13 @@ class FazzLog implements FazzLogInterface {
       int _lastIndex = _textQueu.length - 1;
       PrintGroup _group = _textQueu[_lastIndex];
 
-      ws.sink.add(SendLog(text: _group.labelName));
+      ws.sink.add(SendLog(
+        text: _group.labelName,
+      ).stringify());
 
-      _group.texts.forEach((SendLog _log) => ws.sink.add(_log));
+      _group.texts.forEach(
+        (SendLog _log) => ws.sink.add(_log.stringify()),
+      );
       _textQueu.removeAt(_lastIndex);
     }
   }
@@ -88,8 +101,8 @@ class FazzLog implements FazzLogInterface {
             startTime: _oldTime,
             endTime: _currTime,
             range: _range,
-          ),
-        ),
+          ).stringify(),
+        ).stringify(),
       );
     }
   }

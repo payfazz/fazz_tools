@@ -1,4 +1,8 @@
-class PrintOptions {
+import 'dart:convert';
+
+import 'package:fazz_tools/model/stringify.dart';
+
+class PrintOptions implements Stringify {
   String color;
   String prefix;
   String suffix;
@@ -10,4 +14,15 @@ class PrintOptions {
     this.suffix,
     this.showTimestamp = true,
   });
+
+  @override
+  Map<String, dynamic> toJson() => {
+        "color": color,
+        "prefix": prefix,
+        "suffix": suffix,
+        "showTimestamp": showTimestamp
+      };
+
+  @override
+  String stringify() => jsonEncode(toJson());
 }

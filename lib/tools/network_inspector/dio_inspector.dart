@@ -21,7 +21,7 @@ class FazzDioInspector extends InterceptorsWrapper {
     ws.sink.add(
       SendLog(
         text: err.message,
-      ),
+      ).stringify(),
     );
     _sendHTTPResult(err.response, isError: true);
     return super.onError(err);
@@ -42,9 +42,9 @@ class FazzDioInspector extends InterceptorsWrapper {
               jsonDecode(jsonEncode(response.headers)) as Map<String, dynamic>,
           statusCode: response.statusCode,
           isError: isError,
-        ),
+        ).stringify(),
         type: LogType.network,
-      ),
+      ).stringify(),
     );
   }
 }

@@ -1,6 +1,9 @@
+import 'dart:convert';
+
+import 'package:fazz_tools/model/stringify.dart';
 import 'package:flutter/foundation.dart';
 
-class HttpResult {
+class HttpResult implements Stringify {
   String url;
   Map<String, dynamic> requestHeaders;
   Map<String, dynamic> responseHeaders;
@@ -24,4 +27,21 @@ class HttpResult {
     @required this.statusCode,
     isError = false,
   });
+
+  @override
+  String stringify() => jsonEncode(toJson());
+
+  @override
+  Map<String, dynamic> toJson() => {
+        "url": url,
+        "requestHeaders": requestHeaders,
+        "responseHeaders": responseHeaders,
+        "method": method,
+        "params": params,
+        "contentType": contentType,
+        "body": body,
+        "responseBody": responseBody,
+        "statusCode": statusCode,
+        "isError": isError,
+      };
 }
