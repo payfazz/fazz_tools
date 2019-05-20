@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:fazz_tools/fazz_tools.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -26,34 +27,22 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   Dio _dio;
-  int _counter = 0;
+  FazzTools _fazzTools;
 
   _MyHomePageState() {
     _dio = Dio();
-    _dio.interceptors.add(
-      InterceptorsWrapper(
-        onRequest: (req) {
-          print(req);
-        },
-        onError: (err) {
-          print(err);
-        },
-        onResponse: (resp) {
-          print(resp);
-        },
-      ),
-    );
+    _fazzTools =
+        FazzTools(hostname: '192.168.0.103', port: 9669, isDebug: true);
+    _dio.interceptors.add(_fazzTools.networkInspector.dioInspect);
   }
 
-  @override
-  initState() {
-    super.initState();
-  }
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
+  void _printMe() {
+    _fazzTools.log.timerStart();
+    _fazzTools.log.printGroup('output from method _printMe');
+    _fazzTools.log.printTable({'name': 'kondel'});
+    _fazzTools.log.print('hello kondel');
+    _fazzTools.log.printEndGroup();
+    _fazzTools.log.timerEnd();
   }
 
   @override
@@ -63,24 +52,11 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
-            ),
-          ],
+        child: RaisedButton(
+          child: Text('Print me'),
+          onPressed: _printMe,
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
