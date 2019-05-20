@@ -71,12 +71,17 @@ class FazzLog implements FazzLogInterface {
       PrintGroup _group = _textQueu[_lastIndex];
 
       ws.sink.add(SendLog(
-        text: _group.labelName,
+        text: 'Start: ${_group.labelName}',
       ).stringify());
 
       _group.texts.forEach(
         (SendLog _log) => ws.sink.add(_log.stringify()),
       );
+
+      ws.sink.add(SendLog(
+        text: 'End: ${_group.labelName}',
+      ).stringify());
+
       _textQueu.removeAt(_lastIndex);
     }
   }
