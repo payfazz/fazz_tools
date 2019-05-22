@@ -31,7 +31,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   _MyHomePageState() {
     _dio = Dio(BaseOptions(baseUrl: "http://jsonplaceholder.typicode.com"));
-    _fazzTools = FazzTools(hostname: '192.168.1.3', port: 8080, isDebug: true);
+    _fazzTools = FazzTools(host: '192.168.1.3', isDebug: true);
     _dio.interceptors.add(_fazzTools.networkInspector.dioInspect);
   }
 

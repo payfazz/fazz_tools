@@ -11,8 +11,7 @@ abstract class FazzToolsInterface {
 
 class FazzTools implements FazzToolsInterface {
   bool isDebug;
-  int port;
-  String hostname;
+  String host;
   IOWebSocketChannel _ws;
   FazzLogInterface _log;
   FazzDioInspector _dio;
@@ -20,11 +19,10 @@ class FazzTools implements FazzToolsInterface {
 
   FazzTools({
     this.isDebug = true,
-    @required this.hostname,
-    @required this.port,
+    @required this.host,
   }) {
     if (isDebug) {
-      _ws = IOWebSocketChannel.connect('ws://$hostname:$port');
+      _ws = IOWebSocketChannel.connect('ws://$host:7073');
       _log = FazzLog(ws: _ws);
       _dio = FazzDioInspector(ws: _ws);
       _networkInspector = FazzNetworkInspector(dio: _dio);
