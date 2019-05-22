@@ -24,7 +24,7 @@ class HttpResult implements Stringify {
     @required this.responseBody,
     @required this.statusCode,
     isError = false,
-  });
+  }) : this.isError = isError;
 
   @override
   String stringify() => jsonEncode(toJson());
