@@ -22,7 +22,7 @@ class FazzTools implements FazzToolsInterface {
     @required this.host,
   }) {
     if (isDebug) {
-      _ws = IOWebSocketChannel.connect('ws://$host:7073');
+      _ws = IOWebSocketChannel.connect('ws://$host:7071');
       _log = FazzLog(ws: _ws);
       _dio = FazzDioInspector(ws: _ws);
       _networkInspector = FazzNetworkInspector(dio: _dio);
