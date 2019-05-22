@@ -30,10 +30,15 @@ class _MyHomePageState extends State<MyHomePage> {
   FazzTools _fazzTools;
 
   _MyHomePageState() {
-    _dio = Dio();
-    _fazzTools =
-        FazzTools(hostname: '192.168.0.103', port: 9669, isDebug: true);
+    _dio = Dio(BaseOptions(baseUrl: "http://jsonplaceholder.typicode.com"));
+    _fazzTools = FazzTools(hostname: '192.168.1.3', port: 8080, isDebug: true);
     _dio.interceptors.add(_fazzTools.networkInspector.dioInspect);
+  }
+
+  @override
+  void initState() {
+    _dio.get("/posts", queryParameters: {"_limit": 10});
+    super.initState();
   }
 
   void _printMe() {
