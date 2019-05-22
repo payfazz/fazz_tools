@@ -9,7 +9,6 @@ class HttpResult implements Stringify {
   Map<String, dynamic> responseHeaders;
   String method;
   Map<String, dynamic> params;
-  String contentType;
   dynamic body;
   dynamic responseBody;
   int statusCode;
@@ -21,7 +20,6 @@ class HttpResult implements Stringify {
     @required this.responseHeaders,
     @required this.method,
     @required this.params,
-    @required this.contentType,
     @required this.body,
     @required this.responseBody,
     @required this.statusCode,
@@ -38,7 +36,6 @@ class HttpResult implements Stringify {
         "responseHeaders": responseHeaders,
         "method": method,
         "params": params,
-        "contentType": contentType,
         "body": body,
         "responseBody": responseBody,
         "statusCode": statusCode,

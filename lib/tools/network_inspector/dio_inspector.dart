@@ -33,7 +33,6 @@ class FazzDioInspector extends InterceptorsWrapper {
         text: HttpResult(
           url: response.realUri.toString(),
           method: response.request.method,
-          contentType: response.request.contentType.toString(),
           body: response.request.data,
           params: response.request.queryParameters,
           requestHeaders: response.request.headers,
