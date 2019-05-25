@@ -69,8 +69,8 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "36d87754dfca70ced1ab443cf94d229c91c6582d"
-      url: "git://github.com/azharprabudi/fazz_tools.git"
+      resolved-ref: "318e068d8964dea8e38aaa3204790b7a678939df"
+      url: "../"
     source: git
     version: "1.0.0+1"
   flutter:
