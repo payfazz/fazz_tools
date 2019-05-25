@@ -10,6 +10,7 @@ class FazzDioInspector extends InterceptorsWrapper {
   IOWebSocketChannel ws;
 
   FazzDioInspector({@required this.ws}) : super();
+
   @override
   onResponse(Response response) {
     _sendHTTPResult(response);

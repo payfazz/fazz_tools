@@ -1,13 +1,13 @@
+import 'package:dio/dio.dart';
 import 'package:fazz_tools/mocks/io_websocket_channel.dart';
 import 'package:fazz_tools/tools/log/log.dart';
-import 'package:fazz_tools/tools/network_inspector/dio_inspector.dart';
-import 'package:fazz_tools/tools/network_inspector/network_inspector.dart';
+import 'package:fazz_tools/tools/dio_inspector/dio_inspector.dart';
 import 'package:meta/meta.dart';
 import 'package:web_socket_channel/io.dart';
 
 abstract class FazzToolsInterface {
   FazzLogInterface get log;
-  FazzNetworkInspectorInterface get networkInspector;
+  InterceptorsWrapper get dioInspector;
 }
 
 class FazzTools implements FazzToolsInterface {
@@ -15,8 +15,7 @@ class FazzTools implements FazzToolsInterface {
   String host;
   IOWebSocketChannel _ws;
   FazzLogInterface _log;
-  FazzDioInspector _dio;
-  FazzNetworkInspectorInterface _networkInspector;
+  FazzDioInspector _dioInspector;
 
   FazzTools({
     this.isDebug = true,
@@ -29,10 +28,12 @@ class FazzTools implements FazzToolsInterface {
     }
 
     _log = FazzLog(ws: _ws);
-    _dio = FazzDioInspector(ws: _ws);
-    _networkInspector = FazzNetworkInspector(dio: _dio);
+    _dioInspector = FazzDioInspector(ws: _ws);
   }
 
+  @override
   FazzLogInterface get log => _log;
-  FazzNetworkInspectorInterface get networkInspector => _networkInspector;
+
+  @override
+  InterceptorsWrapper get dioInspector => _dioInspector;
 }
