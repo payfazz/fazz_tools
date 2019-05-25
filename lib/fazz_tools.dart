@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:fazz_tools/mocks/io_websocket_channel.dart';
-import 'package:fazz_tools/tools/log/log.dart';
-import 'package:fazz_tools/tools/dio_inspector/dio_inspector.dart';
+import 'package:fazz_tools/core/log/log.dart';
+import 'package:fazz_tools/core/dio_inspector/dio_inspector.dart';
 import 'package:meta/meta.dart';
 import 'package:web_socket_channel/io.dart';
 
