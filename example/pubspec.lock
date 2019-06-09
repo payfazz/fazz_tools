@@ -67,11 +67,9 @@ packages:
   fazz_tools:
     dependency: "direct main"
     description:
-      path: "."
-      ref: HEAD
-      resolved-ref: "318e068d8964dea8e38aaa3204790b7a678939df"
-      url: "../"
-    source: git
+      path: ".."
+      relative: true
+    source: path
     version: "1.0.0+1"
   flutter:
     dependency: "direct main"
